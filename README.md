@@ -10,12 +10,12 @@ Code Sonar 实时读取系统传感器数据（CPU、内存、网络），将其
 
 ```bash
 # 安装依赖（需要 Python 3.11+）
-pip install scamp scamp_extensions psutil
+pip install scamp scamp_extensions psutil uv
 
 # macOS 还需要 FluidSynth 提供 MIDI 合成
 brew install fluid-synth
 
-python main.py
+uv run main.py
 ```
 
 按 `Ctrl+C` 停止。
@@ -44,7 +44,7 @@ main.py
 | 传感器     | 映射目标            | 规则                              |
 |---------|-----------------|---------------------------------|
 | **CPU** | BPM             | `50 + CPU × 32`（50~82），每小节平滑 ±2 |
-| **CPU** | Vibraphone 音符密度 | 触发概率 `20% + CPU × 60%`          |
+| **CPU** | Vibraphone 音符密度 | 触发概率 `20% + CPU × 80%`          |
 | **CPU** | Pad 音量          | `0.28 + CPU × 0.18`             |
 | **RAM** | Bass 音高         | RAM > 80% 时低音下沉四度               |
 | **NET** | Vibraphone 音区   | NET > 20% 时按 NET 值概率触发高八度「闪光音」  |

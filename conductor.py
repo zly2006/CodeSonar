@@ -119,8 +119,7 @@ class Conductor:
             gap     = ts - sustain
 
             reason = (
-                f"王道进行第{prog_idx+1}步: {chord_name} "
-                f"（Bar {self.metro.bar_count}，共{ts}拍）"
+                f"{chord_name} (Bar {self.metro.bar_count}，共{ts}拍)"
             )
             self._log("PAD", "ElecPiano", notes, vol, ts, reason)
             self.pad.play_chord(notes, vol, sustain, blocking=True)
@@ -143,7 +142,7 @@ class Conductor:
                 wait(1.0)
                 continue
 
-            prob = 0.20 + self.cpu * 0.60
+            prob = 0.20 + self.cpu * 0.80
             if random.random() >= prob:
                 wait(1.0)
                 continue
@@ -200,6 +199,6 @@ class Conductor:
         self.session.fork(self.loop_sensor_update)
         self.session.fork(self.loop_clock)
         self.session.fork(self.loop_pad)
-        self.session.fork(self.loop_droplets)
         self.session.fork(self.loop_bass)
+        self.session.fork(self.loop_droplets)
         self.session.wait_forever()
